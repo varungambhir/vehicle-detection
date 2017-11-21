@@ -52,7 +52,7 @@ I created a dataset having vehicle and non-vehicle images and trained my svm cla
 
 ####2. Explain how you settled on your final choice of HOG parameters.
 
-I tried various combinations where i experimented with different color spaces, pixel per block, cell per block, however i ended up with the foloowing values which gave optimal results:
+I tried various combinations where i experimented with different color spaces, pixel per block, cell per block, however i ended up with the following values which gave optimal results:
 
 1. color_space = 'YCrCb'
 2. spatial_size = (32, 32)
@@ -73,7 +73,7 @@ I trained a linear SVM using feature vectors where two type of feature vectors w
 
 ####1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-I used the find_car() function from the lesson to find the car in an image. However to remove multiple boxes around the same car what I did was implemented my alogorithm where i took the box coordinates in a vector. Then on these coordinates in a vector i checked whether they overlapped or not which meant that they belong to the same car otherwise the coordinate belonged to  a new car object. Using this new centroid points were found out whioch were found out through averaging all cases found and then box was drawn around the car object as seen in the video. 
+I used the find_car() function from the lesson to find the car in an image. However to remove multiple boxes around the same car what I did was implemented my algorithm where i took the box coordinates in a vector. Then on these coordinates in a vector i checked whether they overlapped or not which meant that they belong to the same car otherwise the coordinate belonged to  a new car object. Using this new centroid points were found out which were found out through averaging all cases found and then box was drawn around the car object as seen in the video. 
 
 ####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
@@ -85,6 +85,9 @@ Results on the test images can be seen below:
 ![alt text][image4]
 ![alt text][image5]
 ![alt text][image6]
+
+To optimize the performance i chose y range from 400 to 650 as the cars wont be present in the sky so iterating throuhg that part didnt make sense. I used a scale of 1.5 after trying out different values of 1.0 and 2.0 which didnt work. Also chossing one window size worked well in my case and no rescaling was required.
+
 ---
 
 ### Video Implementation
@@ -109,12 +112,10 @@ I didnt use heatmap approach to remove multiple boxes and false positives. I imp
 
 ![alt text][image6]
 
-
 ---
 
 ###Discussion
 
 ####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
- I think using svm is not optimal as neural networks might give a better result. Also my algorithm to remove false positives and multiple boxes around same car can be improved to perform better in various conditions.
-
+I think using svm is not optimal as neural networks might give a better result. Also my algorithm to remove false positives and multiple boxes around same car can be improved to perform better in various conditions.
